@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    html {
+      height: 100%
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0
+    }
+
+    #map_canvas {
+      height: 100%
+    }
+  </style>
+  <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAwY4VcLaEFb99Wrc835zkWmBCB6SCPy_4&sensor=true&callback=initialize">
+    </script>
+  <script type="text/javascript">
+    var map;
+    function initialize() {
+      var mapOptions = {
+        center: new google.maps.LatLng(58, 16),
+        zoom: 7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById("map_canvas"),
+        mapOptions);
+    }
+  </script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body onload="initialize()">
+  <div id="searchBar" style="width:100%; height:3%">Search city: <input id=input></input> <button id="search">search</button></div>
+  <div id="map_canvas" style="width:100%; height:97%"></div>
+
+  <script type="text/javascript" src="city.list.json"></script>
+  <script type="text/javascript">
+   var input;
+   var found = false;
+    document.getElementById("search").onclick=function(){
+     input = document.getElementById("input").value;
+      console.log(input);
+      $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "city.list.json",
+      success: function (data) {
+        $.each(data, function (i, item) {
+          console.log(input);
+          if ((item.name == input || item.name.toLowerCase() == input) && item.country =="AU" ) {
+            var latLng = new google.maps.LatLng(item.coord.lat, item.coord.lon);
+            var coordInfoWindow = new google.maps.InfoWindow();
+            coordInfoWindow.setContent(createInfoWindowContent(item.name,item.country,latLng));
+            coordInfoWindow.setPosition(latLng);
+            var center=latLng;
+            map.panTo(center);
+
+            // Creating a marker and putting it on the map
+            var marker = new google.maps.Marker({
+              position: latLng,
+              title: item.name + "," + item.country,
+              map: map
+            });
+            // marker.setMap(map);
+            //create info window
+           
+            // coordInfoWindow.open(map);
+            marker.addListener('click', function() {
+              coordInfoWindow.open(marker.get('map'), marker);
+            });
+
+            found=true;
+          }
+        })
+        if(found ==true){
+          alert("Please choose the city you want to check weather.");
+        }else{
+          alert("Please check your input. There is no city found as "+input);
+          history.go(0);
+        }
+        
+      }
+    });
+    }
+    function createInfoWindowContent(city, country, latLng) {
+      var Coordinate = latLng;
+      return [
+        city + ' : ' + country,
+        'LatLng: ' + latLng,
+        '<a href="/weather.html?cityName=' + encodeURI(city) + '">' + 'Weather Info'+ '</a><br/>' 
+      ].join('<br>');
+    }
+
+   
+  </script>
+</body>
+
+</html>

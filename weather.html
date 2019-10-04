@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Weather Info Page</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="./bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./stylesheets/bootstrap.min.css">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 1.0em;
+      color: #fff;
+      text-shadow: .1em .1em 0 rgba(0, 0, 0, 0.3);
+      height: 100vh;
+      /* display: flex;
+      align-items: center;
+      justify-content: center; */
+      background-image: linear-gradient(to right top, #99bbcb, #a5c7d7, #b1d4e2, #bde0ee, #c9edfa);
+    }
+
+    h1 {
+      margin: 0 auto;
+      font-size: 2.2em;
+      text-align: center;
+      color: #fff;
+      font-size: 3em;
+    }
+
+    body.sunny {
+      background-image: linear-gradient(to right top, #ff4e50, #ff713e, #ff932b, #ffb41d, #f9d423);
+    }
+
+    body.cloudy {
+      background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    }
+
+    body.rainy {
+      background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="./stylesheets/mystyle.css">
+</head>
+
+<body>
+  <div class="headerCss">
+    <div class="row">
+      <div class="col">
+        <label id="description"></label>
+      </div>
+      <div class="col" id="icon">
+        <img id="wicon" src="" alt="Weather icon">
+      </div>
+      <div class="col"></div>
+      <div class="col">Current</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1 id="temp"></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col"> <label id="location"></label>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+
+
+
+  <div class="container">
+    <div class="row">
+      <label>Today</label>
+    </div>
+    <div class="row">
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore1"></label>
+            </div>
+            <div class="col" id="icon_fore1">
+              <img id="wicon_fore1" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore2"></label>
+            </div>
+            <div class="col" id="icon_fore2">
+              <img id="wicon_fore2" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore3"></label>
+            </div>
+            <div class="col" id="icon_fore3">
+              <img id="wicon_fore3" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore4"></label>
+            </div>
+            <div class="col" id="icon_fore4">
+              <img id="wicon_fore4" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore5"></label>
+            </div>
+            <div class="col" id="icon_fore5">
+              <img id="wicon_fore5" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day5"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore5"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore6"></label>
+            </div>
+            <div class="col" id="icon_fore6">
+              <img id="wicon_fore6" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day6"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore6"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore7"></label>
+            </div>
+            <div class="col" id="icon_fore7">
+              <img id="wicon_fore7" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day7"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore7"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col">
+              <label id="description_fore8"></label>
+            </div>
+            <div class="col" id="icon_fore8">
+              <img id="wicon_fore8" src="" alt="Weather icon">
+            </div>
+            <div class="col">
+              <label id="day8"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_fore8"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script lang="text/javascript">
+    window.onload = function () {
+      var loc = location.href;
+      var n1 = loc.length;//地址的总长度
+      var n2 = loc.indexOf("=");//取得=号的位置
+      var cityName = decodeURI(loc.substr(n2 + 1, n1 - n2));//从=号后面的内容
+      console.log(cityName);
+      weatherBalloon(cityName);
+      weatherForecast(cityName);
+    }
+
+    function weatherBalloon(cityName) {
+      var key = 'c31c30bf92f140deeb023ccb57878bec';
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key)
+        .then(function (resp) { return resp.json() }) // Convert data to json
+        .then(function (data) {
+          console.log(data);
+          drawWeather(data);
+        })
+        .catch(function () {
+          // catch any errors
+        });
+    }
+
+    function weatherForecast(cityName) {
+      var key = 'c31c30bf92f140deeb023ccb57878bec';
+      fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=' + key)
+        .then(function (resp) { return resp.json() }) // Convert data to json
+        .then(function (data) {
+          console.log(data);
+          drawWeathers(data);
+        })
+        .catch(function () {
+          // catch any errors
+        });
+    }
+
+    function drawWeather(d) {
+      var celcius = Math.round(parseFloat(d.main.temp) - 273.15);
+      var fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
+      var description = d.weather[0].description;
+      var iconcode = d.weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
+      document.getElementById('description').innerHTML = description;
+      document.getElementById('temp').innerHTML = celcius + '&deg;';
+      document.getElementById('wicon').setAttribute('src', iconurl);
+
+      if (description.indexOf('rain') > 0) {
+        document.body.className = 'rainy';
+      } else if (description.indexOf('cloud') > 0) {
+        document.body.className = 'cloudy';
+      } else if (description.indexOf('sunny') > 0) {
+        document.body.className = 'sunny';
+      }
+    }
+
+    function drawWeathers(d) {
+      console.log(d.list[4]);
+      for (var i = 0; i < 40; i++) {
+        var celcius1 = Math.round(parseFloat(d.list[i].main.temp) - 273.15);
+        var fahrenheit1 = Math.round(((parseFloat(d.list[i].main.temp) - 273.15) * 1.8) + 32);
+        var description1 = d.list[i].weather[0].description;
+        var iconcode1 = d.list[i].weather[0].icon;
+        var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
+
+        document.getElementById('description_fore' + (i + 1)).innerHTML = description1;
+        document.getElementById('temp_fore' + (i + 1)).innerHTML = celcius1 + '&deg;';
+        document.getElementById('wicon_fore' + (i + 1)).setAttribute('src', iconurl1);
+        document.getElementById('day' + (i + 1)).innerHTML = (d.list[i].dt_txt).slice(5);
+      }
+    }
+
+
+  </script>
+</body>
+
+
+</html>
