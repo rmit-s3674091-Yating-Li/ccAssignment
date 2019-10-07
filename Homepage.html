@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HOMEPAGE</title>
+    </head>
+    <head>
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            />
+            <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+            <script src="https://api4.windy.com/assets/libBoot.js"></script>
+            <style>
+                #windy {
+                    width: 60%;
+                    height: 620px;
+                    left:650px;
+                }
+            </style>
+    </head>
+    <body>
+        <h1>Weather analysis</h1>
+        <p>S3585378 Yigong Wang</p>
+        <p>S3674091 Yating Li</p>
+    </body>
+    <body>
+            <div id="windy"></div>
+            <script src="Windyapi.js"></script>
+    </body>
+    <body>
+        <div class="btn-group">
+             <button type="button">Select the city</button>
+             <button type="button">Analisis</button>    
+        </div>
+    </body>
+    <style>
+         .btn-group button{
+         background-color: #e7e7e7; /* Green */
+         border: none;
+         color: black;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         border-radius: 12px;
+         width: 200px;
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+         }
+         .btn-group button:hover {
+         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+         }
+         .btn-group button:not(:first-child){
+         position:absolute;
+         right:400px;
+         bottom:60px;
+         }
+         .btn-group button{
+         position:absolute;
+         right:150px;
+         bottom:60px;
+         }
+    </style>
+    <style>
+         body{
+         background-image:url("background.jpg");
+         background-size:cover;
+         background-attachment:fixed;
+         background-color:#CCCCCC;
+         }  
+    </style>
+</html>
