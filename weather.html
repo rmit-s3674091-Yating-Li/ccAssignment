@@ -18,7 +18,7 @@
       font-size: 1.0em;
       color: #fff;
       text-shadow: .1em .1em 0 rgba(0, 0, 0, 0.3);
-      height: 100vh;
+
       /* display: flex;
       align-items: center;
       justify-content: center; */
@@ -54,69 +54,153 @@
       <div class="col">
         <label id="description"></label>
       </div>
-      <div class="col" id="icon">
+      <div class="col" id="icon" STYLE="text-align: right;">
         <img id="wicon" src="" alt="Weather icon">
+        Current
       </div>
-      <div class="col"></div>
-      <div class="col">Current</div>
     </div>
     <div class="row">
       <div class="col">
-        <h1 id="temp"></h1>
+        <h1 STYLE="text-align: center;">Weather Detail Page</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col"> <label id="location"></label>
+      <div class="col" STYLE="text-align: left;"> <label id="location"></label> </div>
+      <div class="col" STYLE="text-align: right;">
+        <label id="temp"></label>
       </div>
     </div>
   </div>
   <br><br><br>
 
-
+  <div class="container">
+    <div class="row">
+      <label>Weather detail</label>
+    </div>
+    <div class="row">
+      <label id="details"></label>
+    </div>
+  </div>
+  <br><br>
 
   <div class="container">
     <div class="row">
-      <label>Today</label>
+      <div class="col-sm-1">
+        <label>Today</label>
+      </div>
+      <div class="col-sm-2">
+        <label id=maxmin_1></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=uv1></label>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div1_1"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div1_1">
+              <img id="wicon_div1_1" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div1_1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div1_1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div1_2"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div1_2">
+              <img id="wicon_div1_2" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div1_2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div1_2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div1_3"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div1_3">
+              <img id="wicon_div1_3" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div1_3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div1_3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div1_4"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div1_4">
+              <img id="wicon_div1_4" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div1_4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div1_4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <div class="row">
 
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore1"></label>
+            <div class="col-sm-4">
+              <label id="description_div1_5"></label>
             </div>
-            <div class="col" id="icon_fore1">
-              <img id="wicon_fore1" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div1_5">
+              <img id="wicon_div1_5" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day1"></label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <h1 id="temp_fore1"></h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="upFile cardcss">
-          <div class="row">
-            <div class="col">
-              <label id="description_fore2"></label>
-            </div>
-            <div class="col" id="icon_fore2">
-              <img id="wicon_fore2" src="" alt="Weather icon">
-            </div>
-            <div class="col">
-              <label id="day2"></label>
+            <div class="col-sm-4">
+              <label id="day_div1_5"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore2"></h1>
+              <h1 id="temp_div1_5"></h1>
             </div>
           </div>
         </div>
@@ -125,19 +209,19 @@
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore3"></label>
+            <div class="col-sm-4">
+              <label id="description_div1_6"></label>
             </div>
-            <div class="col" id="icon_fore3">
-              <img id="wicon_fore3" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div1_6">
+              <img id="wicon_div1_6" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day3"></label>
+            <div class="col-sm-4">
+              <label id="day_div1_6"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore3"></h1>
+              <h1 id="temp_div1_6"></h1>
             </div>
           </div>
         </div>
@@ -146,19 +230,41 @@
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore4"></label>
+            <div class="col-sm-4">
+              <label id="description_div1_7"></label>
             </div>
-            <div class="col" id="icon_fore4">
-              <img id="wicon_fore4" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div1_7">
+              <img id="wicon_div1_7" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day4"></label>
+            <div class="col-sm-4">
+              <label id="day_div1_7"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore4"></h1>
+              <h1 id="temp_div1_7"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div1_8"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div1_8">
+              <img id="wicon_div1_8" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div1_8"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div1_8"></h1>
             </div>
           </div>
         </div>
@@ -166,47 +272,126 @@
 
     </div>
   </div>
+  <br><br>
 
   <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <label>Tomorrow</label>
+      </div>
+      <div class="col-sm-2">
+        <label id=maxmin_2></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=uv2></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div2_1"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div2_1">
+              <img id="wicon_div2_1" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div2_1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div2_1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div2_2"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div2_2">
+              <img id="wicon_div2_2" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div2_2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div2_2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div2_3"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div2_3">
+              <img id="wicon_div2_3" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div2_3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div2_3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div2_4"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div2_4">
+              <img id="wicon_div2_4" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div2_4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div2_4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <div class="row">
 
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore5"></label>
+            <div class="col-sm-4">
+              <label id="description_div2_5"></label>
             </div>
-            <div class="col" id="icon_fore5">
-              <img id="wicon_fore5" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div2_5">
+              <img id="wicon_div2_5" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day5"></label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <h1 id="temp_fore5"></h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="upFile cardcss">
-          <div class="row">
-            <div class="col">
-              <label id="description_fore6"></label>
-            </div>
-            <div class="col" id="icon_fore6">
-              <img id="wicon_fore6" src="" alt="Weather icon">
-            </div>
-            <div class="col">
-              <label id="day6"></label>
+            <div class="col-sm-4">
+              <label id="day_div2_5"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore6"></h1>
+              <h1 id="temp_div2_5"></h1>
             </div>
           </div>
         </div>
@@ -215,19 +400,40 @@
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore7"></label>
+            <div class="col-sm-4">
+              <label id="description_div2_6"></label>
             </div>
-            <div class="col" id="icon_fore7">
-              <img id="wicon_fore7" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div2_6">
+              <img id="wicon_div2_6" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day7"></label>
+            <div class="col-sm-4">
+              <label id="day_div2_6"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore7"></h1>
+              <h1 id="temp_div2_6"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div2_7"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div2_7">
+              <img id="wicon_div2_7" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div2_7"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div2_7"></h1>
             </div>
           </div>
         </div>
@@ -237,19 +443,19 @@
       <div class="col">
         <div class="upFile cardcss">
           <div class="row">
-            <div class="col">
-              <label id="description_fore8"></label>
+            <div class="col-sm-4">
+              <label id="description_div2_8"></label>
             </div>
-            <div class="col" id="icon_fore8">
-              <img id="wicon_fore8" src="" alt="Weather icon">
+            <div class="col-sm-4" id="icon_div2_8">
+              <img id="wicon_div2_8" src="" alt="Weather icon">
             </div>
-            <div class="col">
-              <label id="day8"></label>
+            <div class="col-sm-4">
+              <label id="day_div2_8"></label>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1 id="temp_fore8"></h1>
+              <h1 id="temp_div2_8"></h1>
             </div>
           </div>
         </div>
@@ -257,6 +463,583 @@
 
     </div>
   </div>
+  <br><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <label id="day3"></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=maxmin_3></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=uv3></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_1"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_1">
+              <img id="wicon_div3_1" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_2"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_2">
+              <img id="wicon_div3_2" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_3"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_3">
+              <img id="wicon_div3_3" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_4"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_4">
+              <img id="wicon_div3_4" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_5"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_5">
+              <img id="wicon_div3_5" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_5"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_5"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_6"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_6">
+              <img id="wicon_div3_6" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_6"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_6"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_7"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_7">
+              <img id="wicon_div3_7" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_7"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_7"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div3_8"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div3_8">
+              <img id="wicon_div3_8" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div3_8"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div3_8"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <label id="day4"></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=maxmin_4></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=uv4></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_1"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_1">
+              <img id="wicon_div4_1" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_2"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_2">
+              <img id="wicon_div4_2" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_3"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_3">
+              <img id="wicon_div4_3" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_4"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_4">
+              <img id="wicon_div4_4" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_5"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_5">
+              <img id="wicon_div4_5" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_5"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_5"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_6"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_6">
+              <img id="wicon_div4_6" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_6"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_6"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_7"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_7">
+              <img id="wicon_div4_7" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_7"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_7"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div4_8"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div4_8">
+              <img id="wicon_div4_8" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div4_8"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div4_8"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <label id="day5"></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=maxmin_5></label>
+      </div>
+      <div class="col-sm-2">
+        <label id=uv5></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_1"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_1">
+              <img id="wicon_div5_1" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_1"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_1"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_2"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_2">
+              <img id="wicon_div5_2" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_2"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_2"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_3"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_3">
+              <img id="wicon_div5_3" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_3"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_3"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_4"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_4">
+              <img id="wicon_div5_4" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_4"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_4"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_5"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_5">
+              <img id="wicon_div5_5" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_5"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_5"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_6"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_6">
+              <img id="wicon_div5_6" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_6"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_6"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_7"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_7">
+              <img id="wicon_div5_7" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_7"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_7"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="upFile cardcss">
+          <div class="row">
+            <div class="col-sm-4">
+              <label id="description_div5_8"></label>
+            </div>
+            <div class="col-sm-4" id="icon_div5_8">
+              <img id="wicon_div5_8" src="" alt="Weather icon">
+            </div>
+            <div class="col-sm-4">
+              <label id="day_div5_8"></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h1 id="temp_div5_8"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br>
+
+
 
   <script lang="text/javascript">
     window.onload = function () {
@@ -265,11 +1048,44 @@
       var n2 = loc.indexOf("=");//取得=号的位置
       var cityName = decodeURI(loc.substr(n2 + 1, n1 - n2));//从=号后面的内容
       console.log(cityName);
-      weatherBalloon(cityName);
+      weatherCheck(cityName);
       weatherForecast(cityName);
+      checkUV(cityName);
     }
 
-    function weatherBalloon(cityName) {
+    function checkUV(cityName) {
+      var key = 'c31c30bf92f140deeb023ccb57878bec';
+      var lon, lat;
+      $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/cc2/15cities.json",
+        success: function (data) {
+          $.each(data, function (i, item) {
+            if (item.city == cityName) {
+              lon = item.longtitude;
+              lat = item.latitude;
+              console.log(lon);
+              console.log(lat);
+              fetch('https://api.openweathermap.org/data/2.5/uvi/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + key)
+                .then(function (resp) { return resp.json() }) // Convert data to json
+                .then(function (data) {
+                  console.log(data);
+                  updateUV(data);
+                })
+                .catch(function () {
+                  // catch any errors
+                });
+            }
+          })
+        }
+      });
+
+
+
+    }
+
+    function weatherCheck(cityName) {
       var key = 'c31c30bf92f140deeb023ccb57878bec';
       fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key)
         .then(function (resp) { return resp.json() }) // Convert data to json
@@ -301,10 +1117,23 @@
       var description = d.weather[0].description;
       var iconcode = d.weather[0].icon;
       var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+      var details = "";
+
+      var date1 = new Date(d.sys.sunrise * 1000);
+      details += "Sunrise at " + date1 + ". ";
+      var date2 = new Date(d.sys.sunset * 1000);
+      details += "Sunset at " + date2 + ". <br>";
+      details += "Wind speed is at " + d.wind.speed + "meter/sec .";
+      details += "Wind degree is " + d.wind.deg + " .";
+      details += "Visibility is " + d.visibility + "meter .<br>";
+      details += "Pressure is " + d.main.pressure + "hPa .";
+      details += "Humidity is " + d.main.humidity + "% .<br>"
 
       document.getElementById('description').innerHTML = description;
       document.getElementById('temp').innerHTML = celcius + '&deg;';
       document.getElementById('wicon').setAttribute('src', iconurl);
+      document.getElementById('location').innerHTML = d.name;
+      document.getElementById('details').innerHTML = details;
 
       if (description.indexOf('rain') > 0) {
         document.body.className = 'rainy';
@@ -316,24 +1145,60 @@
     }
 
     function drawWeathers(d) {
-      console.log(d.list[4]);
-      for (var i = 0; i < 40; i++) {
-        var celcius1 = Math.round(parseFloat(d.list[i].main.temp) - 273.15);
-        var fahrenheit1 = Math.round(((parseFloat(d.list[i].main.temp) - 273.15) * 1.8) + 32);
-        var description1 = d.list[i].weather[0].description;
-        var iconcode1 = d.list[i].weather[0].icon;
-        var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
 
-        document.getElementById('description_fore' + (i + 1)).innerHTML = description1;
-        document.getElementById('temp_fore' + (i + 1)).innerHTML = celcius1 + '&deg;';
-        document.getElementById('wicon_fore' + (i + 1)).setAttribute('src', iconurl1);
-        document.getElementById('day' + (i + 1)).innerHTML = (d.list[i].dt_txt).slice(5);
+      for (var i = 0; i < 5; i++) {
+        var max = -100;
+        var min = 100;
+        if (i >= 2) {
+          document.getElementById('day' + (i + 1)).innerHTML = d.list[8 * i].dt_txt.slice(5, 10);
+        }
+        for (var j = 0; j < 8; j++) {
+          var celcius1 = Math.round(parseFloat(d.list[j + 8 * i].main.temp) - 273.15);
+          if (celcius1 >= max) {
+            max = celcius1;
+          } else if (celcius1 <= min) {
+            min = celcius1;
+          }
+          var fahrenheit1 = Math.round(((parseFloat(d.list[j + 8 * i].main.temp) - 273.15) * 1.8) + 32);
+          var description1 = d.list[j + 8 * i].weather[0].description;
+          var iconcode1 = d.list[j + 8 * i].weather[0].icon;
+          var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
+
+          document.getElementById('description_div' + (i + 1) + '_' + (j + 1)).innerHTML = description1;
+          document.getElementById('temp_div' + (i + 1) + '_' + (j + 1)).innerHTML = celcius1 + '&deg;';
+          document.getElementById('wicon_div' + (i + 1) + '_' + (j + 1)).setAttribute('src', iconurl1);
+          document.getElementById('day_div' + (i + 1) + '_' + (j + 1)).innerHTML = (d.list[j + 8 * i].dt_txt).slice(5, 16);
+        }
+        document.getElementById('maxmin' + '_' + (i + 1)).innerHTML = min + '&deg;' + ' ~ ' + max + '&deg;';
       }
+    }
+
+    function updateUV(d) {
+      for (var j = 0; j < 5; j++) {
+        var uv = d[j].value;
+        var index;
+        if (uv <= 2) {
+          index = "Low";
+        } else if (uv <= 5) {
+          index = "Moderate";
+        } else if (uv <= 7) {
+          index = "High";
+        } else if (uv <= 10) {
+          index = "Very High";
+        } else {
+          index = "Extreme";
+        }
+        document.getElementById("uv" + (j + 1)).innerHTML = d[j].value + " (" + index + ")";
+      }
+      var detail = document.getElementById('details').innerHTML;
+      detail+= "UV index is " + d[0].value +" .";
+      document.getElementById('details').innerHTML=detail;
+
     }
 
 
   </script>
-</body>
 
+</body>
 
 </html>
