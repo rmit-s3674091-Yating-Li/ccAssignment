@@ -55,79 +55,26 @@
 <body onload="initialize()">
     <div class="headerCss">
         <div class="row">
-            <h1>Top 15 best cities to visit in Australia</h1>
+            <h1>Current weather status of 50 cities in Australia </h1>
         </div>
-        <div class="row" STYLE="text-align: center;">
-            <label>   The color of markers below is based on our formula for weather condition .</label>
-            <label>   Green means great, yellow means not so bad, red means bad.</label>
-            <label>   Please choose the city you want to go and check weather information.</label>
+        <class="col" STYLE="text-align: left;">
+            <label> The color of markers below is based on our formula for weather condition .</label>
+            <label> Green means great, yellow means not so bad, red means bad.</label>
+            <label> Please choose the city you want to go and check weather information.</label>
         </div>
     </div>
     <div id="map_canvas" style="width:100%; height:97%"></div>
 
-    <script type="text/javascript" src="/cc2/15cities.json"></script>
     <script type="text/javascript">
 
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/cc2/15cities.json",
-            success: function (data) {
-                $.each(data, function (i, item) {
-                    var latLng = new google.maps.LatLng(item.latitude, item.longtitude);
-                    var city = item.city;
-                    var country = item.country;
-                    console.log(city);
-                    var score = 100;
-                    var key = 'c31c30bf92f140deeb023ccb57878bec';
-                    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key)
-                        .then(function (resp) { return resp.json() }) // Convert data to json
-                        .then(function (data) {
-                            console.log(data);
-                            score = drawWeather(data, score);
-                            var status = "";
-                            if (score < 60) {
-                                status = "bad";
-                            } else if (score < 85) {
-                                status = "good";
-                            } else {
-                                status = "great";
-                            }
-
-                            if (score < 60) {
-                                addMarker(latLng, city, country, status, "blue");
-                            } else if (score < 85) {
-                                addMarker(latLng, city, country, status, "yellow");
-                            } else {
-                                addMarker(latLng, city, country, status, "green");
-                            }
-
-                            addMarker(latLng, citymcountry, "");
-                            // // Creating a marker and putting it on the map
-                            // var marker = new google.maps.Marker({
-                            //     position: latLng,
-                            //     title: item.city + "," + item.country,
-                            //     map: map
-                            // });
-                            // // marker.setMap(map);
-                            // //create info window
-
-                            // // coordInfoWindow.open(map);
-                            // marker.addListener('click', function () {
-                            //     coordInfoWindow.open(marker.get('map'), marker);
-                            // });
-                        })
-                        .catch(function () {
-                            // catch any errors
-                        });
-
-
-
-
-                })
-
-            }
-        });
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://10.132.71.138:8080/weather`, true);//read cache from endpoint. Endpoint obtains data every 5 minutes and refresh it.
+        xhr.send();
+        xhr.onload = function () {
+            data = JSON.parse(xhr.responseText);
+            console.log(data);
+            drawWeather(data);
+        }
 
         function addMarker(latLng, city, country, status, color) {
             let url = "http://maps.google.com/mapfiles/ms/icons/";
@@ -145,8 +92,8 @@
             var coordInfoWindow = new google.maps.InfoWindow();
             coordInfoWindow.setContent(createInfoWindowContent(city, country, latLng, status));
             coordInfoWindow.setPosition(latLng);
-            var center = latLng;
-            map.panTo(center);
+            // var center = latLng;
+            // map.panTo(center);
 
             marker.addListener('click', function () {
                 coordInfoWindow.open(marker.get('map'), marker);
@@ -155,18 +102,7 @@
             markersArray.push(marker);
         }
 
-        function weatherCheck(cityName, score) {//check today's weather condition
-            var key = 'c31c30bf92f140deeb023ccb57878bec';
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key)
-                .then(function (resp) { return resp.json() }) // Convert data to json
-                .then(function (data) {
-                    console.log(data);
-                    drawWeather(data, score);
-                })
-                .catch(function () {
-                    // catch any errors
-                });
-        }
+
         //rules for the weather score
         //The total score is 100
         //if any possibility of rain, then minus 20.
@@ -178,139 +114,55 @@
         //for temprature, if it is within 18-27, then it has full score of 24, otherwise, if min is less than 0 , then 0 point.
         //else if min is less than 10, minus 15, else if min is less than 18, minus 5.
 
-        function drawWeather(d, score) {
-            var celcius = Math.round(parseFloat(d.main.temp) - 273.15);
-            var description = d.weather[0].description;
-            // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-            var humidity = d.main.humidity;
-            var max = Math.round(parseFloat(d.main.temp_max) - 273.15);
-            var min = Math.round(parseFloat(d.main.temp_min) - 273.15);
-            console.log(max);
-            console.log(min);
-            console.log(humidity);
+        function drawWeather(d) {
+            console.log(d);
+            d.forEach(element => {
+                console.log(element);
+                var celcius = Math.round(parseFloat(element.mainData.temp) - 273.15);
+                var description = element.weatherList[0].description;
+                // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+                var humidity = element.mainData.humidity;
+                var max = Math.round(parseFloat(element.mainData.temp_max) - 273.15);
+                var min = Math.round(parseFloat(element.mainData.temp_min) - 273.15);
+                var city = element.cityName;
+                var country = "AU";
+                var lat = element.coordData.latitude;
+                var lon = element.coordData.longitude;
+                console.log(element.coordData.longitude);
+                var latLng = new google.maps.LatLng(lat, lon);
+                console.log(city);
 
-            if (description.indexOf('rain') > 0) {//rain 
-                score = score - 20;
-            }
-            console.log(score);
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", `http://10.132.71.138:8080/weatherscore`, true);//read cache from endpoint to get analyzed score.
+                xhr.send();
+                xhr.onload = function () {
+                    data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    for (var key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            console.log(key + " -> " + data[key]);
+                            if (key == city) {
+                                var score = data[key];
+                                console.log(score);
+                                var status;
+                                if (score < 60) {
+                                    status = "bad";
+                                    addMarker(latLng, city, country, status, "blue");
+                                } else if (score < 80) {
+                                    status = "good";
+                                    addMarker(latLng, city, country, status, "yellow");
+                                } else {
+                                    status = "great";
+                                    addMarker(latLng, city, country, status, "green");
+                                }
+                                console.log(status);
+                            }
+                        }
+                    }
 
-            if ((max - min) > 15) {//gap between max and min temprature
-                score = score - 20;
-            } else if ((max - min) > 10) {
-                score = score - 10;
-            }
-            console.log(score);
-
-            if (max < 27) {//rules for temprature within 27 celcius
-                if (min <= 0) {
-                    score = score - 24;
-                } else if (min <= 9) {
-                    score = score - 15;
-                } else if (min <= 17) {
-                    score = score - 5;
                 }
-            }
-            console.log(score);
 
-            if (max >= 27) {//heat index
-                if (max == 27) {
-                    score = score - 10;
-                } else if (max == 28) {
-                    if (humidity <= 85) {
-                        score = score - 10;
-                    } else {
-                        score = score - 15;
-                    }
-                } else if (max == 29) {
-                    if (humidity <= 70) {
-                        score = score - 10;
-                    } else {
-                        score = score - 15;
-                    }
-                } else if (max == 30) {
-                    if (humidity <= 55) {
-                        score = score - 10;
-                    } else if (humidity <= 85) {
-                        score = score - 15;
-                    } else {
-                        score = score - 20;
-                    }
-                } else if (max == 31) {
-                    if (humidity <= 45) {
-                        score = score - 10;
-                    } else if (humidity <= 75) {
-                        score = score - 15;
-                    } else {
-                        score = score - 20;
-                    }
-                } else if (max == 32) {
-                    if (humidity <= 65) {
-                        score = score - 15;
-                    } else if (humidity <= 90) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 33) {
-                    if (humidity <= 55) {
-                        score = score - 15;
-                    } else if (humidity <= 80) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 34) {
-                    if (humidity <= 50) {
-                        score = score - 15;
-                    } else if (humidity <= 75) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 36) {
-                    if (humidity <= 40) {
-                        score = score - 15;
-                    } else if (humidity <= 65) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 37) {
-                    if (humidity <= 60) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 38) {
-                    if (humidity <= 55) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 39) {
-                    if (humidity <= 50) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 40) {
-                    if (humidity <= 45) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else if (max == 41) {
-                    if (humidity <= 40) {
-                        score = score - 20;
-                    } else {
-                        score = score - 26;
-                    }
-                } else {
-                    score = score - 26;
-                }
-            }
-            return score;
-            console.log(score);
+            });
 
         }
 

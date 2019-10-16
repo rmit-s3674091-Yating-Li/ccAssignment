@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Weather Info Page</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="./bootstrap.min.js"></script>
@@ -18,10 +19,6 @@
       font-size: 1.0em;
       color: #fff;
       text-shadow: .1em .1em 0 rgba(0, 0, 0, 0.3);
-
-      /* display: flex;
-      align-items: center;
-      justify-content: center; */
       background-image: linear-gradient(to right top, #99bbcb, #a5c7d7, #b1d4e2, #bde0ee, #c9edfa);
     }
 
@@ -72,6 +69,21 @@
     </div>
   </div>
   <br><br><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div id="UV_chart"></div>
+      </div>
+      <div class="col-sm-4">
+        <div id="Tem_chart"></div>
+      </div>
+      <div class="col-sm-4">
+        <div id="Rain_chart"></div>
+      </div>
+    </div>
+  </div>
+  <br><br>
 
   <div class="container">
     <div class="row">
@@ -1042,6 +1054,10 @@
 
 
   <script lang="text/javascript">
+    var maxs = new Array();
+    var mins = new Array();
+    var uvs = new Array();
+    var rainP = new Array();
     window.onload = function () {
       var loc = location.href;
       var n1 = loc.length;//地址的总长度
@@ -1051,6 +1067,7 @@
       weatherCheck(cityName);
       weatherForecast(cityName);
       checkUV(cityName);
+
     }
 
     function checkUV(cityName) {
@@ -1072,6 +1089,7 @@
                 .then(function (data) {
                   console.log(data);
                   updateUV(data);
+
                 })
                 .catch(function () {
                   // catch any errors
@@ -1145,19 +1163,23 @@
     }
 
     function drawWeathers(d) {
-
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 5; i++) {//every day
         var max = -100;
         var min = 100;
+        var rain = 0;
         if (i >= 2) {
           document.getElementById('day' + (i + 1)).innerHTML = d.list[8 * i].dt_txt.slice(5, 10);
         }
-        for (var j = 0; j < 8; j++) {
+        for (var j = 0; j < 8; j++) {//every data
           var celcius1 = Math.round(parseFloat(d.list[j + 8 * i].main.temp) - 273.15);
           if (celcius1 >= max) {
             max = celcius1;
           } else if (celcius1 <= min) {
             min = celcius1;
+          }
+          var description = d.list[j + 8 * i].weather[0].description;
+          if (description.indexOf('rain') != -1) {
+            rain++;
           }
           var fahrenheit1 = Math.round(((parseFloat(d.list[j + 8 * i].main.temp) - 273.15) * 1.8) + 32);
           var description1 = d.list[j + 8 * i].weather[0].description;
@@ -1169,13 +1191,21 @@
           document.getElementById('wicon_div' + (i + 1) + '_' + (j + 1)).setAttribute('src', iconurl1);
           document.getElementById('day_div' + (i + 1) + '_' + (j + 1)).innerHTML = (d.list[j + 8 * i].dt_txt).slice(5, 16);
         }
+        var rainPossibility = (rain / 8) * 100;
+        rainP[i] = rainPossibility;
+        mins[i] = min;
+        maxs[i] = max;
         document.getElementById('maxmin' + '_' + (i + 1)).innerHTML = min + '&deg;' + ' ~ ' + max + '&deg;';
       }
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawTemperatureChart);
+      google.charts.setOnLoadCallback(drawRainpossibilityChart);
     }
 
     function updateUV(d) {
       for (var j = 0; j < 5; j++) {
         var uv = d[j].value;
+        uvs[j] = uv;
         var index;
         if (uv <= 2) {
           index = "Low";
@@ -1191,13 +1221,84 @@
         document.getElementById("uv" + (j + 1)).innerHTML = d[j].value + " (" + index + ")";
       }
       var detail = document.getElementById('details').innerHTML;
-      detail+= "UV index is " + d[0].value +" .";
-      document.getElementById('details').innerHTML=detail;
-
+      detail += "UV index is " + d[0].value + " .";
+      document.getElementById('details').innerHTML = detail;
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawUVChart);
     }
 
+    function drawUVChart() {
+      var data = google.visualization.arrayToDataTable([
+        [{ label: 'Days', id: 'day', type: 'string' },
+        { label: 'Average UV degree', id: 'index', type: 'number' }],
+        ['Day1', uvs[0],],
+        ['Day2', uvs[1],],
+        ['Day3', uvs[2],],
+        ['Day4', uvs[3],],
+        ['Day5', uvs[4],]
+      ]);
 
+      var options = {
+        title: 'The change of UV Index in five days',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('UV_chart'));
+
+      chart.draw(data, options);
+    }
+
+    function drawTemperatureChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        // ['city', 'min', '', 'max', ''],
+        ['Day1', mins[0], mins[0], maxs[0], maxs[0]],
+        ['Day2', mins[1], mins[1], maxs[1], maxs[1]],
+        ['Day3', mins[2], mins[2], maxs[2], maxs[2]],
+        ['Day4', mins[3], mins[3], maxs[3], maxs[3]],
+        ['Day5', mins[4], mins[4], maxs[4], maxs[4]]
+        // Treat first row as data as well.
+      ], true);
+      // Col 0: String used as a label for this marker on the X axis.
+      // Col 1: Number specifying the low/minimum value of this marker. This is the base of the black line.
+      // Col 2: Number specifying the opening/initial value of this marker. This is one vertical border of the candle. If less than the column 3 value, the candle will be green; otherwise it will be red.
+      // Col 3: Number specifying the closing/final value of this marker. This is the second vertical border of the candle. If less than the column 2 value, the candle will be red; otherwise it will be green.
+      // Col 4: Number specifying the high/maximum value of this marker. This is the top of the black line.
+      // 2 is same as 1 and 3 is same as 4 in this case
+
+      var options = {
+        title: 'The change of temperature in five days',
+        legend: { position: 'bottom' },
+        bar: { groupWidth: '50%' }, // Remove space between bars.
+      };
+
+      var chart = new google.visualization.CandlestickChart(document.getElementById('Tem_chart'));
+      chart.draw(data, options);
+    }
+
+    function drawRainpossibilityChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['day', 'rainPossibility(%)',],
+        ['Day1', rainP[0],],
+        ['Day2', rainP[1],],
+        ['Day3', rainP[2],],
+        ['Day4', rainP[3],],
+        ['Day5', rainP[4],]
+      ], false);
+
+      var options = {
+        title: 'The change of rain possibility in five days',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('Rain_chart'));
+
+      chart.draw(data, options);
+    }
   </script>
+
 
 </body>
 
