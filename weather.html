@@ -1060,9 +1060,9 @@
     var rainP = new Array();
     window.onload = function () {
       var loc = location.href;
-      var n1 = loc.length;//地址的总长度
-      var n2 = loc.indexOf("=");//取得=号的位置
-      var cityName = decodeURI(loc.substr(n2 + 1, n1 - n2));//从=号后面的内容
+      var n1 = loc.length;//url total length
+      var n2 = loc.indexOf("=");//get index of =
+      var cityName = decodeURI(loc.substr(n2 + 1, n1 - n2));//get content after =
       console.log(cityName);
       weatherCheck(cityName);
       weatherForecast(cityName);
@@ -1071,95 +1071,75 @@
     }
 
     function checkUV(cityName) {
-      var key = 'c31c30bf92f140deeb023ccb57878bec';
-      var lon, lat;
-      $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "/cc2/15cities.json",
-        success: function (data) {
-          $.each(data, function (i, item) {
-            if (item.city == cityName) {
-              lon = item.longtitude;
-              lat = item.latitude;
-              console.log(lon);
-              console.log(lat);
-              fetch('https://api.openweathermap.org/data/2.5/uvi/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + key)
-                .then(function (resp) { return resp.json() }) // Convert data to json
-                .then(function (data) {
-                  console.log(data);
-                  updateUV(data);
-
-                })
-                .catch(function () {
-                  // catch any errors
-                });
-            }
-          })
-        }
-      });
-
-
-
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", `http://localhost:8080/uvforecast/${cityName}`, true);//read cache from endpoint. Endpoint obtains data every 5 minutes and refresh it.
+      xhr.send();
+      xhr.onload = function () {
+        data = JSON.parse(xhr.responseText);
+        console.log(data);
+        updateUV(data);
+      }
     }
 
     function weatherCheck(cityName) {
-      var key = 'c31c30bf92f140deeb023ccb57878bec';
-      fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key)
-        .then(function (resp) { return resp.json() }) // Convert data to json
-        .then(function (data) {
-          console.log(data);
-          drawWeather(data);
-        })
-        .catch(function () {
-          // catch any errors
-        });
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", `http://localhost:8080/weather`, true);//read cache from endpoint. Endpoint obtains data every 5 minutes and refresh it.
+      xhr.send();
+      xhr.onload = function () {
+        data = JSON.parse(xhr.responseText);
+        console.log(data);
+        drawWeather(data, cityName);
+      }
     }
 
     function weatherForecast(cityName) {
-      var key = 'c31c30bf92f140deeb023ccb57878bec';
-      fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=' + key)
-        .then(function (resp) { return resp.json() }) // Convert data to json
-        .then(function (data) {
-          console.log(data);
-          drawWeathers(data);
-        })
-        .catch(function () {
-          // catch any errors
-        });
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", `http://localhost:8080/weatherforecast/${cityName}`, true);//read cache from endpoint. Endpoint obtains data every 5 minutes and refresh it.
+      xhr.send();
+      xhr.onload = function () {
+        data = JSON.parse(xhr.responseText);
+        console.log(data);
+        drawWeathers(data);
+      }
     }
 
-    function drawWeather(d) {
-      var celcius = Math.round(parseFloat(d.main.temp) - 273.15);
-      var fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
-      var description = d.weather[0].description;
-      var iconcode = d.weather[0].icon;
-      var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-      var details = "";
+    function drawWeather(d, cityName) {
+      d.forEach(element => {
+        if (element.cityName == cityName) {
+          console.log(element.cityName);
+          var celcius = Math.round(parseFloat(element.mainData.temp) - 273.15);
+          var description = element.weatherList[0].description;
+          var iconcode = element.weatherList[0].iconCode;
+          var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+          var details = "";
 
-      var date1 = new Date(d.sys.sunrise * 1000);
-      details += "Sunrise at " + date1 + ". ";
-      var date2 = new Date(d.sys.sunset * 1000);
-      details += "Sunset at " + date2 + ". <br>";
-      details += "Wind speed is at " + d.wind.speed + "meter/sec .";
-      details += "Wind degree is " + d.wind.deg + " .";
-      details += "Visibility is " + d.visibility + "meter .<br>";
-      details += "Pressure is " + d.main.pressure + "hPa .";
-      details += "Humidity is " + d.main.humidity + "% .<br>"
+          var date1 = new Date(element.systemData.sunriseDateTime);
+          details += "Sunrise at " + date1 + ". ";
+          var date2 = new Date(element.systemData.sunsetDateTime);
+          details += "Sunset at " + date2 + ". <br>";
 
-      document.getElementById('description').innerHTML = description;
-      document.getElementById('temp').innerHTML = celcius + '&deg;';
-      document.getElementById('wicon').setAttribute('src', iconurl);
-      document.getElementById('location').innerHTML = d.name;
-      document.getElementById('details').innerHTML = details;
+          details += "Wind speed is at " + element.windData.speed + "meter/sec .";
+          details += "Wind degree is " + element.windData.degree + " .<br>";
+          // details += "Visibility is " + d.visibility + "meter .<br>";
+          details += "Pressure is " + element.mainData.pressure + "hPa .";
+          details += "Humidity is " + element.mainData.humidity + "% .<br>"
 
-      if (description.indexOf('rain') > 0) {
-        document.body.className = 'rainy';
-      } else if (description.indexOf('cloud') > 0) {
-        document.body.className = 'cloudy';
-      } else if (description.indexOf('sunny') > 0) {
-        document.body.className = 'sunny';
-      }
+          document.getElementById('description').innerHTML = description;
+          document.getElementById('temp').innerHTML = celcius + '&deg;';
+          document.getElementById('wicon').setAttribute('src', iconurl);
+          document.getElementById('location').innerHTML = element.cityName;
+          document.getElementById('details').innerHTML = details;
+
+          if (description.indexOf('rain') > 0) {
+            document.body.className = 'rainy';
+          } else if (description.indexOf('cloud') > 0) {
+            document.body.className = 'cloudy';
+          } else if (description.indexOf('sunny') > 0) {
+            document.body.className = 'sunny';
+          }
+        }
+      });
+
     }
 
     function drawWeathers(d) {
@@ -1168,28 +1148,28 @@
         var min = 100;
         var rain = 0;
         if (i >= 2) {
-          document.getElementById('day' + (i + 1)).innerHTML = d.list[8 * i].dt_txt.slice(5, 10);
+          document.getElementById('day' + (i + 1)).innerHTML = d.dataList[8 * i].dateTimeText.slice(5, 10);
         }
         for (var j = 0; j < 8; j++) {//every data
-          var celcius1 = Math.round(parseFloat(d.list[j + 8 * i].main.temp) - 273.15);
+          var celcius1 = Math.round(parseFloat(d.dataList[j + 8 * i].mainData.temp) - 273.15);
           if (celcius1 >= max) {
             max = celcius1;
           } else if (celcius1 <= min) {
             min = celcius1;
           }
-          var description = d.list[j + 8 * i].weather[0].description;
+          var description = d.dataList[j + 8 * i].weatherList[0].description;
           if (description.indexOf('rain') != -1) {
             rain++;
           }
-          var fahrenheit1 = Math.round(((parseFloat(d.list[j + 8 * i].main.temp) - 273.15) * 1.8) + 32);
-          var description1 = d.list[j + 8 * i].weather[0].description;
-          var iconcode1 = d.list[j + 8 * i].weather[0].icon;
+          var fahrenheit1 = Math.round(((parseFloat(d.dataList[j + 8 * i].mainData.temp) - 273.15) * 1.8) + 32);
+          var description1 = d.dataList[j + 8 * i].weatherList[0].description;
+          var iconcode1 = d.dataList[j + 8 * i].weatherList[0].iconCode;
           var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
 
           document.getElementById('description_div' + (i + 1) + '_' + (j + 1)).innerHTML = description1;
           document.getElementById('temp_div' + (i + 1) + '_' + (j + 1)).innerHTML = celcius1 + '&deg;';
           document.getElementById('wicon_div' + (i + 1) + '_' + (j + 1)).setAttribute('src', iconurl1);
-          document.getElementById('day_div' + (i + 1) + '_' + (j + 1)).innerHTML = (d.list[j + 8 * i].dt_txt).slice(5, 16);
+          document.getElementById('day_div' + (i + 1) + '_' + (j + 1)).innerHTML = (d.dataList[8 * i].dateTimeText.slice(5, 10));
         }
         var rainPossibility = (rain / 8) * 100;
         rainP[i] = rainPossibility;
@@ -1203,7 +1183,7 @@
     }
 
     function updateUV(d) {
-      for (var j = 0; j < 5; j++) {
+     for(var j =0;j<5;j++){
         var uv = d[j].value;
         uvs[j] = uv;
         var index;
@@ -1218,7 +1198,7 @@
         } else {
           index = "Extreme";
         }
-        document.getElementById("uv" + (j + 1)).innerHTML = d[j].value + " (" + index + ")";
+        document.getElementById("uv" + (j + 1)).innerHTML = "UV: " + d[j].value + " (" + index + ")";
       }
       var detail = document.getElementById('details').innerHTML;
       detail += "UV index is " + d[0].value + " .";
@@ -1297,6 +1277,7 @@
 
       chart.draw(data, options);
     }
+
   </script>
 
 
