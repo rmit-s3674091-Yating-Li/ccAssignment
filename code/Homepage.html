@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HOMEPAGE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/bootstrap.min.css">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://api4.windy.com/assets/libBoot.js"></script>
+    <script src="Windyapi.js"></script>
+    <script src="./bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="headerCss">
+        <h1>Weather analysis application for 50 cities in Australia 
+        </h1>
+    </div>
+    <div class="container">
+        <label>Team member:</label><br>
+        <label>s3674091 Yating Li</label><br>
+        <label>s3585378 Yigong Wang</label><br>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="windy"></div>
+            </div>
+            <div class="col" STYLE="text-align: right;">
+                <div class="row" >
+                    <div class="btn-group">
+                        <button type="button" id="checkcur">Check current weather</button>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="btn-group">
+                        <button type="button" id="checkfore">Check weather in 5 days</button>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row" >
+                    <div class="btn-group">
+                        <button type="button" id="analysis">Analysis</button>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+
+    <script lang="text/javascript">
+        document.getElementById("checkcur").onclick = function () {
+            window.location.href = "/AUMap.html";
+        }
+
+        document.getElementById("checkfore").onclick = function () {
+            window.location.href = "/AUMap2.html";
+        }
+
+        document.getElementById("analysis").onclick = function () {
+            window.location.href = "/details.html";
+        }
+    </script>
+
+
+
+    <style>
+        .btn-group button {
+            background-color: #e7e7e7;
+            border: none;
+            color: black;
+            padding: px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btn-group button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btn-group button:not(:first-child) {
+            /* position: absolute; */
+            right: 400px;
+            bottom: 60px;
+        }
+
+        .btn-group button {
+            /* position: absolute; */
+            right: 150px;
+            bottom: 60px;
+        }
+
+        body {
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #CCCCCC;
+        }
+
+        #windy {
+            width: 100%;
+            height: 500px;
+            /* right: 0px; */
+        }
+
+        h1 {
+            margin: 0 auto;
+            font-size: 2.2em;
+            text-align: center;
+            color: #fff;
+            font-size: 3em;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/mystyle.css">
+</body>
+
+</html>
